@@ -1,11 +1,15 @@
 package model;
 
+import java.util.Random;
+
 public class GameBoard {
 	
 	//Attributes
-	int n, m, s , e, p = 0;
-	//String[] symbols = {"*","!","O","X","%","$","#","+","&"};
+	int n, m, s , e, p, randIndex = 0;
+	public String[] allSymbolsArray = {"*","!","O","X","%","$","#","+","&"};
 	String[] symbols; 
+	Random randNum = new Random();
+	
 	/*
 	 * n and m are width and height
 	 * s and e are number of snakes and ladders
@@ -16,7 +20,11 @@ public class GameBoard {
 		this.m = m;
 		this.s = s;
 		this.e = e;
-		this.p = p;	
+		this.p = p;
+		for (int i = 0; i < p; i++) {
+			randIndex = randNum.nextInt(8);
+			symbols[i] = allSymbolsArray[randIndex];
+		}
 	}
 	public GameBoard(int n, int m, int s, int e, String[] symbols) {
 		this.n = n;
@@ -24,6 +32,7 @@ public class GameBoard {
 		this.s = s;
 		this.e = e;
 		this.symbols = symbols;	
+		p = symbols.length;
 	}
 	
 	public int getN() {
