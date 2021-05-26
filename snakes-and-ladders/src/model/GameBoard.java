@@ -21,6 +21,7 @@ public class GameBoard {
 		this.s = s;
 		this.e = e;
 		this.p = p;
+		symbols = new String[p];
 		for (int i = 0; i < p; i++) {
 			randIndex = randNum.nextInt(8);
 			symbols[i] = allSymbolsArray[randIndex];
