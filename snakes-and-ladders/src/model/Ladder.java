@@ -2,6 +2,11 @@ package model;
 
 public class Ladder {
 	
-	//Attriutes
-	int head, tail = 0;
+	//Attributes
+	int start, end = 0;
+	
+	public Ladder(int start, int end) {
+		this.start = start;
+		this.end = end;
+	}	
 }

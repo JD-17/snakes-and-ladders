@@ -15,6 +15,10 @@ public class Main {
 	
 	public static void main(String[] args) throws IOException {
 		collectData();
+		if(gb != null) {
+			
+		}
+		
 	}
 	
 	public static String[] inOut() throws IOException {
@@ -70,6 +74,9 @@ public class Main {
 			}
 			
 		}
+		System.out.println(gb.getSnakes()[0].toString());
+		System.out.println(gb.getSnakes()[1].toString());
+		System.out.println(gb.getSnakes()[2].toString());
 	}
 
 }

@@ -2,7 +2,17 @@ package model;
 
 public class Snake {
 	
-	//Attriutes
-	int start, end = 0;
+	//Attributes
+	int head, tail = 0;
+	
+	public Snake(int head, int tail) {
+		this.head = head;
+		this.tail = tail;
+	}
+	
+	public String toString() {
+		return ""+head+" y "+tail;
+	}
+	
 
 }
