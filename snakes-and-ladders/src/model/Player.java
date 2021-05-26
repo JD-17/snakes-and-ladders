@@ -4,9 +4,9 @@ public class Player {
 	
 	//Attributes
 	int movements, turn, box, diceSc = 0;
-	char symbol = 'a';
+	String symbol = "";
 	
-	public Player(int movements, int turn, int box, int diceSc, char symbol) {
+	public Player(int movements, int turn, int box, int diceSc, String symbol) {
 		this.movements = movements;
 		this.turn = turn;
 		this.box = box;
@@ -32,7 +32,7 @@ public class Player {
 		return diceSc;
 	}
 	
-	public char getSymbol() {
+	public String getSymbol() {
 		return symbol;
 	}
 	

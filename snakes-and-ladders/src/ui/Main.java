@@ -21,7 +21,7 @@ public class Main {
 		System.out.println("Digite lo siguiente dividido por un espacio en blanco:\n"+
 							"Alto, ancho, n serpientes, n escaleras, n jugadores (Quedarán con simbolos aleatorios)\n"+
 							"En caso de querer escoger usted los símbolos, en lugar de digitar el número de jugadores\n"+
-							"Puede escoger entre los siguientes {*,!,O,X,%,$,#,+, &}");
+							"Puede escoger entre los siguientes {*,!,O,X,%,$,#,+,&}");
 		
 		br = new BufferedReader(new InputStreamReader(System.in));
 		String[] stArray = br.readLine().split(" ");
@@ -43,6 +43,10 @@ public class Main {
 		
 		try {
 			lastN = Integer.parseInt(stArray[4]);
+			if(intArr[0]==0 || intArr[1]==0 || intArr[2]==0 || intArr[3]==0 || lastN==0) {
+				System.out.println(" * Asegurate de que ningún valor sea 0\n");
+				collectData();
+			}
 			gb = new GameBoard(intArr[0], intArr[1], intArr[2], intArr[3], lastN);
 			
 		} catch (NumberFormatException e) {
