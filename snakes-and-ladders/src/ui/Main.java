@@ -28,7 +28,7 @@ public class Main {
 		}else {
 			System.out.println("Compruebe los datos, e ingreselos nuevamente");
 			if(compr) {
-				System.out.println("La cuadricula debe ser más grande");
+				System.out.println("La cuadricula debe ser más grande; o bien las serpientes y escaleras menos");
 			}
 		}
 		

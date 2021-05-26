@@ -39,7 +39,6 @@ public class GameBoard {
 		symbols = new String[p];
 		players = new Player[p];
 		snakes = new Snake[s];
-		
 		for (int i = 0; i < p; i++) {
 			randNumber = randNum.nextInt(8-p+1);
 			symbols[i] = allSymbols.get(randNumber);
@@ -77,10 +76,13 @@ public class GameBoard {
 	}
 	
 	//to choose random heads and tails
-	public void randomHeadTail() {
+	public void randomHeadTail() throws IOException {
 		for (int i = 0; i < s; i++) {
 			headsAndTails.add(randHead);
 			while(headsAndTails.contains(randHead)) {
+				if(s+e >(n/2)*m) {
+					Main.collectData(comprRand);
+				}
 				randHead = randNum.nextInt((n*m)-1 -m-1)+m+1;
 			}
 			
