@@ -4,6 +4,8 @@ public class GameBoard {
 	
 	//Attributes
 	int n, m, s , e, p = 0;
+	//String[] symbols = {"*","!","O","X","%","$","#","+","&"};
+	String[] symbols; 
 	/*
 	 * n and m are width and height
 	 * s and e are number of snakes and ladders
@@ -15,6 +17,13 @@ public class GameBoard {
 		this.s = s;
 		this.e = e;
 		this.p = p;	
+	}
+	public GameBoard(int n, int m, int s, int e, String[] symbols) {
+		this.n = n;
+		this.m = m;
+		this.s = s;
+		this.e = e;
+		this.symbols = symbols;	
 	}
 	
 	public int getN() {
