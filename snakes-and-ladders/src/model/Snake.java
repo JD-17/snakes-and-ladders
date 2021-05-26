@@ -11,7 +11,7 @@ public class Snake {
 	}
 	
 	public String toString() {
-		return ""+head+" y "+tail;
+		return ""+head+" and "+tail;
 	}
 	
 

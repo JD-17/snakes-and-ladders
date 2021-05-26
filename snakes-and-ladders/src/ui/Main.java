@@ -10,31 +10,36 @@ import model.GameBoard;
 public class Main {
 	
 	public static GameBoard gb;
+	public static boolean bol = true;
 	private static BufferedReader br = null;
 	public static String[] allSymbolsArray = {"*","!","O","X","%","$","#","+","&"};
 	
 	public static void main(String[] args) throws IOException {
-		collectData();
-		if(gb != null) {
-			
-		}
-		
+		collectData(false);
 	}
 	
-	public static String[] inOut() throws IOException {
-		System.out.println("Digite lo siguiente dividido por un espacio en blanco:\n"+
-							"Alto, ancho, n serpientes, n escaleras, n jugadores (Quedarán con simbolos aleatorios)\n"+
-							"En caso de querer escoger usted los símbolos, en lugar de digitar el número de jugadores\n"+
-							"Puede escoger entre los siguientes {*,!,O,X,%,$,#,+,&}");
+	public static String[] inOut(boolean compr) throws IOException {
+		if(bol) {
+			System.out.println("Digite lo siguiente dividido por un espacio en blanco:\n"+
+					"Alto, ancho, n serpientes, n escaleras, n jugadores (Quedarán con simbolos aleatorios)\n"+
+					"En caso de querer escoger usted los símbolos, en lugar de digitar el número de jugadores\n"+
+					"Puede escoger entre los siguientes {*,!,O,X,%,$,#,+,&}");
+			bol = false;
+		}else {
+			System.out.println("Compruebe los datos, e ingreselos nuevamente");
+			if(compr) {
+				System.out.println("La cuadricula debe ser más grande");
+			}
+		}
 		
 		br = new BufferedReader(new InputStreamReader(System.in));
 		String[] stArray = br.readLine().split(" ");
 		return stArray;
 	}
 	
-	public static void collectData() throws IOException {
+	public static void collectData(boolean compr) throws IOException {
 		ArrayList<String> allSymbols = new ArrayList<String>(Arrays.asList(allSymbolsArray));
-		String[] stArray = inOut();
+		String[] stArray = inOut(compr);
 		String[] symbolsArr;
 		int[] intArr = new int[4];
 		
@@ -45,11 +50,16 @@ public class Main {
 			intArr[i] = Integer.parseInt(stArray[i]);
 		}
 		
+		/*try {
+			randHead = randNum.nextInt((n*m)-1 -m-1)+m+1;
+			randTail = randNum.nextInt((m*j) -2)+2;
+		}*/
+		
 		try {
 			lastN = Integer.parseInt(stArray[4]);
 			if(intArr[0]==0 || intArr[1]==0 || intArr[2]==0 || intArr[3]==0 || lastN==0) {
 				System.out.println(" * Asegurate de que ningún valor sea 0\n");
-				collectData();
+				collectData(false);
 			}
 			gb = new GameBoard(intArr[0], intArr[1], intArr[2], intArr[3], lastN);
 			
@@ -70,13 +80,10 @@ public class Main {
 				gb = new GameBoard(intArr[0], intArr[1], intArr[2], intArr[3],symbolsArr);
 			}else {
 				System.out.println(" * Caracter invalido o repetido\n");
-				collectData();
+				collectData(false);
 			}
 			
 		}
-		System.out.println(gb.getSnakes()[0].toString());
-		System.out.println(gb.getSnakes()[1].toString());
-		System.out.println(gb.getSnakes()[2].toString());
 	}
 
 }
