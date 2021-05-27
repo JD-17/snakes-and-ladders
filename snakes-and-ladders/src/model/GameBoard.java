@@ -92,7 +92,6 @@ public class GameBoard {
 			if(b) {
 				while(headsAndTails.contains(randHead)) {
 					randHead = randNum.nextInt((n*m) -m-1)+m+1;
-					System.out.println("A-- randHead snake a"+randHead);
 				}
 				headsAndTails.add(randHead);
 				
@@ -101,7 +100,6 @@ public class GameBoard {
 					if((randHead*1.0 / m) > j) {
 						while(headsAndTails.contains(randTail)) {
 							randTail = randNum.nextInt((m*j) -1)+3;
-							System.out.println("randTail snake a"+randTail);
 						}
 					}
 				}
@@ -113,15 +111,9 @@ public class GameBoard {
 		
 		for (int i = 0; i < e && b; i++) {
 			
-			/*if(s+e >(n/2)*m) {
-				Main.collectData(comprRand);
-				System.out.println("ERROR-2");
-			}*/
-			
 			if(b) {
 				while(headsAndTails.contains(randHead)) {
 					randHead = randNum.nextInt((n*m) -m-1)+m+1;
-					System.out.println("B -- randHead Ladder"+randHead);
 				}
 				headsAndTails.add(randHead);
 				
@@ -130,7 +122,6 @@ public class GameBoard {
 					if((randHead*1.0 / m) > j) {
 						while(headsAndTails.contains(randTail)) {
 							randTail = randNum.nextInt((m*j) -1)+2;
-							System.out.println("randTail Ladder "+randTail);
 						}
 					}
 					
@@ -153,7 +144,22 @@ public class GameBoard {
 	public Snake[] getSnakes() {
 		return snakes;
 	}
-	
+	// 
+	/*public void showBoard() {
+		int c =1;
+		ArrayList<Integer> headAndTail = new ArrayList<>();
+		for(int i = 0; i<snakes.length ;i++) {
+			headAndTail.add(snakes[i].getHead());
+			headAndTail.add(snakes[i].getTail());
+		}
+		for(int i=1; i<= n*m; i++) {
+			if(headAndTail.contains(i)){
+				System.out.println("["+i+c"]");
+			}
+			
+		}
+		
+	}*/
 	//Getters
 	public int getNRows() {
 		return n;

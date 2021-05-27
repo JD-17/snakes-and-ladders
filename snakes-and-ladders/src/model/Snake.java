@@ -14,5 +14,13 @@ public class Snake {
 		return ""+head+" and "+tail;
 	}
 	
+	public int getHead() {
+		return head;
+	}
+	
+	public int getTail() {
+		return tail;
+	}
+	
 
 }
