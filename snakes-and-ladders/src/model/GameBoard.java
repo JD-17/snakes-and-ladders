@@ -16,7 +16,7 @@ public class GameBoard {
 	
 	//Attributes
 	int n, m, s , e, p, randNumber, randHead, randTail = 0;
-	boolean comprRand = true;
+	public boolean comprRand, b = true;
 	ArrayList<Integer> headsAndTails = new ArrayList<>(); 
 	
 	private String[] allSymbolsArray = {"*","!","O","X","%","$","#","+","&"};
@@ -39,6 +39,8 @@ public class GameBoard {
 		symbols = new String[p];
 		players = new Player[p];
 		snakes = new Snake[s];
+		ladders = new Ladder[e];
+		
 		for (int i = 0; i < p; i++) {
 			randNumber = randNum.nextInt(8-p+1);
 			symbols[i] = allSymbols.get(randNumber);
@@ -49,6 +51,7 @@ public class GameBoard {
 			randomHeadTail();
 			
 		}catch(IllegalArgumentException x) {
+			//catch random's exception
 			Main.collectData(comprRand);
 		}
 		
@@ -63,6 +66,7 @@ public class GameBoard {
 		p = symbols.length;
 		players = new Player[p];
 		snakes = new Snake[s];
+		ladders = new Ladder[e];
 		
 		for (int i = 0; i < p; i++) {
 			players[i] = new Player(0,i,0,0,this.symbols[i]);
@@ -71,32 +75,76 @@ public class GameBoard {
 			randomHeadTail();
 			
 		}catch(IllegalArgumentException x) {
+			//catch random's exception out of border
 			Main.collectData(comprRand);
 		}
 	}
 	
 	//to choose random heads and tails
 	public void randomHeadTail() throws IOException {
-		for (int i = 0; i < s; i++) {
-			headsAndTails.add(randHead);
-			while(headsAndTails.contains(randHead)) {
-				if(s+e >(n/2)*m) {
-					Main.collectData(comprRand);
-				}
-				randHead = randNum.nextInt((n*m)-1 -m-1)+m+1;
+		headsAndTails.add(0);
+		b = true;
+		
+		for (int i = 0; i < s && b; i++) {
+			if(s+e >(n/2)*m) {
+				b = false;
 			}
-			
-			for(int j = 1; j < n ; j++) {
+			if(b) {
+				while(headsAndTails.contains(randHead)) {
+					randHead = randNum.nextInt((n*m) -m-1)+m+1;
+					System.out.println("A-- randHead snake a"+randHead);
+				}
+				headsAndTails.add(randHead);
 				
-				if((randHead*1.0 / m) > j) {
-					headsAndTails.add(randTail);
-					while(headsAndTails.contains(randTail)) {
-						randTail = randNum.nextInt((m*j) -2)+2;
+				for(int j = 1; j < n ; j++) {
+					
+					if((randHead*1.0 / m) > j) {
+						while(headsAndTails.contains(randTail)) {
+							randTail = randNum.nextInt((m*j) -1)+3;
+							System.out.println("randTail snake a"+randTail);
+						}
 					}
 				}
+				headsAndTails.add(randTail);
+				
+				snakes[i] = new Snake(randHead,randTail);
+			}
+		}
+		
+		for (int i = 0; i < e && b; i++) {
+			
+			/*if(s+e >(n/2)*m) {
+				Main.collectData(comprRand);
+				System.out.println("ERROR-2");
+			}*/
+			
+			if(b) {
+				while(headsAndTails.contains(randHead)) {
+					randHead = randNum.nextInt((n*m) -m-1)+m+1;
+					System.out.println("B -- randHead Ladder"+randHead);
+				}
+				headsAndTails.add(randHead);
+				
+				for(int j = 1; j < n ; j++) {
+					
+					if((randHead*1.0 / m) > j) {
+						while(headsAndTails.contains(randTail)) {
+							randTail = randNum.nextInt((m*j) -1)+2;
+							System.out.println("randTail Ladder "+randTail);
+						}
+					}
+					
+				}
+				headsAndTails.add(randTail);
+				
+				ladders[i] = new Ladder(randHead,randTail);
+				
 			}
 			
-			snakes[i] = new Snake(randHead,randTail);
+		}
+		
+		if(!b) {
+			Main.collectData(comprRand);
 		}
 		
 	}

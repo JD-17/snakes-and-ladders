@@ -15,25 +15,44 @@ public class Main {
 	public static String[] allSymbolsArray = {"*","!","O","X","%","$","#","+","&"};
 	
 	public static void main(String[] args) throws IOException {
-		collectData(false);
+		br = new BufferedReader(new InputStreamReader(System.in));
+		showMenu();
+	}
+	
+	public static void showMenu() throws IOException {
+		System.out.println("Qué desea hacer?\n"+
+				"1. Jugar\n"+
+				"2. Ver Tablero de Posiciones\n"+
+				"3. Salir *\n");
+		
+		int opt = Integer.parseInt(br.readLine());
+		
+		switch(opt) {
+			case 1: collectData(false);
+			break;
+			case 2: ;
+			break;
+			case 3: ;
+			break;
+		}
+		
 	}
 	
 	public static String[] inOut(boolean compr) throws IOException {
 		if(bol) {
-			System.out.println("Digite lo siguiente dividido por un espacio en blanco:\n"+
+			System.out.println("\nDigite lo siguiente dividido por un espacio en blanco:\n"+
 					"Alto, ancho, n serpientes, n escaleras, n jugadores (Quedarán con simbolos aleatorios)\n"+
 					"En caso de querer escoger usted los símbolos, en lugar de digitar el número de jugadores\n"+
 					"Puede escoger entre los siguientes {*,!,O,X,%,$,#,+,&}");
 			bol = false;
 		}else {
-			System.out.println("Compruebe los datos, e ingreselos nuevamente");
+			System.out.println("\nCompruebe los datos, e ingreselos nuevamente");
 			if(compr) {
 				System.out.println("La cuadricula debe ser más grande; o bien las serpientes y escaleras menos");
 			}
 		}
-		
-		br = new BufferedReader(new InputStreamReader(System.in));
 		String[] stArray = br.readLine().split(" ");
+		
 		return stArray;
 	}
 	
@@ -50,18 +69,14 @@ public class Main {
 			intArr[i] = Integer.parseInt(stArray[i]);
 		}
 		
-		/*try {
-			randHead = randNum.nextInt((n*m)-1 -m-1)+m+1;
-			randTail = randNum.nextInt((m*j) -2)+2;
-		}*/
-		
 		try {
 			lastN = Integer.parseInt(stArray[4]);
 			if(intArr[0]==0 || intArr[1]==0 || intArr[2]==0 || intArr[3]==0 || lastN==0) {
 				System.out.println(" * Asegurate de que ningún valor sea 0\n");
 				collectData(false);
+			}else {
+				gb = new GameBoard(intArr[0], intArr[1], intArr[2], intArr[3], lastN);
 			}
-			gb = new GameBoard(intArr[0], intArr[1], intArr[2], intArr[3], lastN);
 			
 		} catch (NumberFormatException e) {
 			symbolsArr = stArray[4].split("");
