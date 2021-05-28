@@ -107,7 +107,11 @@ public class GameBoard {
 				
 				snakes[i] = new Snake(randHead,randTail);
 			}
+			
 		}
+		/*for(int i=0;i<s;i++) {
+			System.out.println(snakes[i].getTail()+" yyy"+snakes[i].getHead());
+		}*/
 		
 		for (int i = 0; i < e && b; i++) {
 			
